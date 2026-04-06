@@ -10,7 +10,7 @@
 ## Как запустить
 
 ```bash
-cd "/Users/ilya/Downloads/лидеры права сайт"
+cd "/Users/ilya/Downloads/лидеры права сайт"
 python3 server.py
 ```
 
