@@ -53,8 +53,6 @@
         }
 
         /* Scroll animations for hero words */
-        /* Hide long partners intro text (requested: remove text from page) */
-        .partners-intro-text { display: none; }
         .scroll-word {
             display: inline-block;
             transition: transform 0.6s var(--ease-out), opacity 0.6s ease;
@@ -1376,6 +1374,115 @@
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--c-text);
+            display: block;
+        }
+
+        .partner-perk-sub {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--c-gray-dark);
+            margin-top: 0.2rem;
+            line-height: 1.4;
+        }
+
+        .partner-perk-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .partners-stats-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .partner-stat {
+            display: flex;
+            flex-direction: column;
+            padding: 0.85rem 1.1rem;
+            border-radius: 1.1rem;
+            background: rgba(234, 10, 42, 0.06);
+            border: 1px solid rgba(234, 10, 42, 0.12);
+            min-width: 90px;
+        }
+
+        .partner-stat-num {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: var(--c-red);
+            line-height: 1;
+        }
+
+        .partner-stat-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--c-gray-dark);
+            margin-top: 0.3rem;
+        }
+
+        .partners-cta-eyebrow {
+            margin-bottom: 0.75rem;
+        }
+
+        .partners-cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(234, 10, 42, 0.1);
+            color: var(--c-red);
+            font-family: var(--f-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            box-shadow: inset 0 0 0 1px rgba(234, 10, 42, 0.15);
+        }
+
+        .partners-tiers {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .partner-tier {
+            display: flex;
+            flex-direction: column;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            background: rgba(10, 10, 10, 0.04);
+            border: 1px solid rgba(10, 10, 10, 0.08);
+            min-width: 130px;
+        }
+
+        .partner-tier-featured {
+            background: rgba(234, 10, 42, 0.08);
+            border-color: rgba(234, 10, 42, 0.2);
+        }
+
+        .partner-tier-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--c-text);
+        }
+
+        .partner-tier-featured .partner-tier-label {
+            color: var(--c-red);
+        }
+
+        .partner-tier-desc {
+            font-size: 0.75rem;
+            color: var(--c-gray-dark);
+            margin-top: 0.2rem;
+            line-height: 1.3;
         }
 
         .partners-logos {
@@ -4326,67 +4433,73 @@
                 <div class="partners-intro-left">
                     <span class="partners-kicker">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                        Совместно с лидерами
+                        Станьте партнёром
                     </span>
                     <h2 class="partners-title">
-                        Кто стоит<br>за <span>Лидерами<br>Права</span>
+                        Почему <span>500+<br>организаций</span><br>выбирают нас
                     </h2>
+                    <div class="partners-stats-row">
+                        <div class="partner-stat">
+                            <span class="partner-stat-num">30+</span>
+                            <span class="partner-stat-label">ведущих вузов</span>
+                        </div>
+                        <div class="partner-stat">
+                            <span class="partner-stat-num">10 000+</span>
+                            <span class="partner-stat-label">участников</span>
+                        </div>
+                        <div class="partner-stat">
+                            <span class="partner-stat-num">8</span>
+                            <span class="partner-stat-label">лет работы</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="partners-intro-right">
                     <p class="partners-intro-text">
-                        Конкурс «Лидеры Права» — это уникальный проект, который объединяет ведущие юридические вузы страны, государственные структуры и профессиональные организации. За годы работы партнёрская сеть выросла до 30+ организаций, включая Министерство юстиции РФ, Государственную Думу, крупнейшие юридические компании и СМИ. Вместе мы создаём площадку для развития правовых инициатив, поддержки молодых специалистов и формирования нового поколения лидеров юридического сообщества. Наши партнёры обеспечивают экспертное сопровождение конкурса, предоставляют площадки для мероприятий, поддерживают призовой фонд и помогают финалистам с трудоустройством. Каждый партнёр вносит свой вклад в общее дело — подготовку квалифицированных кадров для российской правовой системы.<br><br>
-
-                        <strong>Государственные партнёры</strong> — Министерство юстиции РФ и Государственная Дума — обеспечивают конкурсу статус государственной инициативы и открывают доступ к законодательным процессам. Их участие подтверждает значимость проекта для развития правовой культуры и привлечения молодых талантов в государственный аппарат.<br><br>
-
-                        <strong>Ведущие вузы</strong> — МГЮА, МГИМО, ВШЭ, СПбГУ и другие юридические школы — формируют академическое ядро конкурса. Они предоставляют экспертов для жюри, площадки для мероприятий и гарантируют высокий уровень подготовки участников. Сотни студентов ежегодно проходят через конкурс, получая возможность заявить о себе на федеральном уровне.<br><br>
-
-                        <strong>Юридические компании</strong> — партнёры из числа крупнейших юридических фирм России — обеспечивают практическую составляющую: стажировки, наставничество, призовой фонд. Для многих участников конкурс становится стартовой площадкой для карьеры в топовых юридических командах.<br><br>
-
-                        <strong>Информационные партнёры</strong> — ведущие правовые СМИ и платформы — обеспечивают освещение конкурса и помогают участникам заявить о себе. Публичность — один из ключевых результатов участия в «Лидерах Права».
+                        «Лидеры Права» — это федеральная платформа для поиска юридических талантов, которая ежегодно объединяет тысячи студентов и молодых специалистов. Партнёрство с нами — это прямой доступ к будущим лидерам правовой сферы, укрепление репутации бренда и участие в формировании профессионального сообщества.
                     </p>
                     <div class="partners-perks">
                         <div class="partner-perk">
                             <div class="partner-perk-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
                             </div>
-                            <span class="partner-perk-text">Экспертная поддержка ведущих специалистов</span>
-                        </div>
-                        <div class="partner-perk">
-                            <div class="partner-perk-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                            <div class="partner-perk-content">
+                                <span class="partner-perk-text">Доступ к лучшим юридическим талантам страны</span>
+                                <span class="partner-perk-sub">Рекрутинг финалистов напрямую, стажировки и трудоустройство</span>
                             </div>
-                            <span class="partner-perk-text">Доступ к талантам и карьерным возможностям</span>
                         </div>
                         <div class="partner-perk">
                             <div class="partner-perk-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                             </div>
-                            <span class="partner-perk-text">Информационное продвижение вашего бренда</span>
+                            <div class="partner-perk-content">
+                                <span class="partner-perk-text">Федеральный охват и медиаприсутствие</span>
+                                <span class="partner-perk-sub">Освещение в ведущих правовых СМИ и на наших площадках</span>
+                            </div>
                         </div>
                         <div class="partner-perk">
                             <div class="partner-perk-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/><path d="M12 18v2"/></svg>
                             </div>
-                            <span class="partner-perk-text">Участие в деловой программе и профильных дискуссиях</span>
+                            <div class="partner-perk-content">
+                                <span class="partner-perk-text">VIP-место в деловой программе</span>
+                                <span class="partner-perk-sub">Выступления, дискуссии и нетворкинг с первыми лицами</span>
+                            </div>
                         </div>
                         <div class="partner-perk">
                             <div class="partner-perk-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-6"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                             </div>
-                            <span class="partner-perk-text">Укрепление репутации через заметное присутствие в проекте</span>
-                        </div>
-                        <div class="partner-perk">
-                            <div class="partner-perk-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/><path d="M14.5 4l-5 16"/></svg>
+                            <div class="partner-perk-content">
+                                <span class="partner-perk-text">Экспертное влияние на правовую среду</span>
+                                <span class="partner-perk-sub">Участие в формировании стандартов и продвижение инициатив</span>
                             </div>
-                            <span class="partner-perk-text">Прямой доступ к сильному юридическому сообществу и новым связям</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="partners-logos">
-                <div class="partners-logos-title">Наши партнеры</div>
+                <div class="partners-logos-title">Нам доверяют</div>
                 <div class="partners-logos-grid">
                     <div class="partner-logo-card">
                         <img src="./assets/partners/mgya.png" alt="МГЮА">
@@ -4418,14 +4531,22 @@
             <div class="partners-cta">
                 <div class="partners-cta-box">
                     <div class="partners-cta-content">
-                        <h3>Готовы стать частью<br>правового сообщества?</h3>
-                        <p>Свяжитесь с нами, чтобы обсудить формат партнёрства и выбрать подходящий уровень сотрудничества для вашей организации.</p>
+                        <div class="partners-cta-eyebrow">
+                            <span class="partners-cta-badge">Партнёрская программа</span>
+                        </div>
+                        <h3>Становитесь частью<br>будущего права</h3>
+                        <p>Мы предлагаем гибкие форматы сотрудничества — от информационного партнёрства до генеральной поддержки. Каждый уровень даёт реальные результаты для вашей организации.</p>
+
                     </div>
                     <div class="partners-cta-actions">
                         <button type="button" class="partners-cta-btn partners-cta-btn-primary partner-phone-trigger">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
                             Стать партнёром
                         </button>
+                        <a href="mailto:partner@lideryprava.ru" class="partners-cta-btn partners-cta-btn-secondary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+                            Написать нам
+                        </a>
                     </div>
                 </div>
             </div>
