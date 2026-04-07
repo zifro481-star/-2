@@ -13,7 +13,7 @@ from urllib.parse import urlparse
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 DB_PATH = DATA_DIR / "applications.db"
-HOST = "127.0.0.1"
+HOST = "0.0.0.0"
 PORT = int(os.environ.get("PORT", "8000"))
 ADMIN_LOGIN = os.environ.get("ADMIN_LOGIN", "admin")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "change-me-please")
