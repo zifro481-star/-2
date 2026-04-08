@@ -3710,6 +3710,11 @@
             }
         }
     </style>
+    <script>
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+    </script>
 <script vid="9">
         document.addEventListener('DOMContentLoaded', function() {
             const observerOptions = {
@@ -3875,10 +3880,10 @@
     </style></head>
     
     
-<body vid="23">
+<body>
 
     <header class="site-header">
-        <a class="brand-lockup" href="#home" aria-expanded="true" aria-label="Свернуть или развернуть подпись бренда">
+        <a class="brand-lockup" href="javascript:void(0)" onclick="scrollToSection('home')" aria-expanded="true" aria-label="Свернуть или развернуть подпись бренда">
             <img class="brand-logo" src="./assets/logo.jpg" alt="Лидеры Права">
             <span class="brand-copy">
                 <span class="brand-title">Лидеры Права</span>
@@ -3888,14 +3893,14 @@
 
         <nav class="top-nav" aria-label="Основная навигация" aria-hidden="false">
             <div class="top-nav-group">
-                <a href="#home">Главная</a>
-                <a href="#story">История</a>
-                <a href="#audience">Для кого</a>
-                <a href="#partners">Партнеры</a>
-                <a href="#benefits">Что получите</a>
-                <a href="#timeline">Этапы</a>
-                <a href="#faq">FAQ</a>
-                <a href="#apply" class="nav-cta">Регистрация</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('home')">Главная</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('story')">История</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('audience')">Для кого</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('partners')">Партнеры</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('benefits')">Что получите</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('timeline')">Этапы</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('faq')">FAQ</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('apply')" class="nav-cta">Регистрация</a>
             </div>
         </nav>
     </header>
@@ -4489,39 +4494,12 @@
                 <div class="footer-main">
                     <div class="footer-brand animate-on-scroll stagger-1">
                         <span class="footer-kicker">Контакты и навигация</span>
-                        <a class="footer-brand-lockup" href="#home">
-                            <img src="./assets/logo.jpg" alt="Лидеры Права">
-                            <span>
-                                <span class="footer-brand-name">Лидеры Права</span>
-                                <span class="footer-brand-subtitle">Юридический конкурс для студентов и молодых специалистов.</span>
-                            </span>
-                        </a>
-                        <p class="footer-brand-text">Здесь собраны основные разделы сайта, контакты и короткая справка о проекте без лишних визуальных эффектов.</p>
-                        <div class="footer-micro">
-                            <span>Регистрация до 15 ноября</span>
-                            <span>Студенты и молодые юристы</span>
-                            <span>Стажировки, гранты, наставники</span>
-                        </div>
-                        <a href="#apply" class="footer-cta">Подать заявку</a>
-                    </div>
-
-                    <div class="footer-grid">
-                        <div class="footer-card animate-on-scroll stagger-2">
-                            <span class="footer-card-title">Навигация</span>
-                            <div class="footer-links">
-                                <a href="#story">История проекта</a>
-                                <a href="#partners">Партнёры</a>
-                                <a href="#benefits">Что вы получите</a>
-                                <a href="#faq">Вопросы и ответы</a>
-                            </div>
-                        </div>
-
-                        <div class="footer-card animate-on-scroll stagger-3">
-                            <span class="footer-card-title">Контакты</span>
-                            <div class="footer-contact-list">
-                                <a href="tel:+74951234567">+7 (495) 123-45-67</a>
-                                <a href="mailto:info@lideriprava.ru">info@lideriprava.ru</a>
-                                <a href="#partners">Стать партнёром конкурса</a>
+                        <a class="footer-brand-lockup" href="javascript:void(0)" onclick="scrollToSection('home')">
+                        <a href="javascript:void(0)" onclick="scrollToSection('story')">История проекта</a>
+                        <a href="javascript:void(0)" onclick="scrollToSection('partners')">Партнёры</a>
+                        <a href="javascript:void(0)" onclick="scrollToSection('benefits')">Что вы получите</a>
+                        <a href="javascript:void(0)" onclick="scrollToSection('faq')">Вопросы и ответы</a>
+                        <a href="javascript:void(0)" onclick="scrollToSection('partners')">Стать партнёром конкурса</a>
                             </div>
                         </div>
 
@@ -4550,7 +4528,7 @@
                             <a href="./privacy.html" target="_blank" rel="noopener noreferrer">Политика конфиденциальности</a>
                         </div>
                     </div>
-                    <a class="footer-back-link" href="#home">Наверх</a>
+                    <a class="footer-back-link" href="javascript:void(0)" onclick="scrollToSection('home')">Наверх</a>
                 </div>
             </div>
         </div>
