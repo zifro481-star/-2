@@ -3916,7 +3916,7 @@
                         <span class="hero-line hero-line-1" vid="58">лидеры</span><br vid="59">
                         <span class="hero-line hero-line-2" vid="60">права</span><br vid="61">
                         <span class="hero-line hero-line-3 text-red" vid="62">начинаются</span><br vid="63">
-                        <span class="hero-line hero-line-4" vid="64">с вашей</span><br vid="65">
+                        <span class="hero-line hero-line-4" vid="64">с вашеи</span><br vid="65">
                         <span class="hero-line hero-line-5" vid="66">заявки</span>
                     </h1>
 
@@ -4495,11 +4495,38 @@
                     <div class="footer-brand animate-on-scroll stagger-1">
                         <span class="footer-kicker">Контакты и навигация</span>
                         <a class="footer-brand-lockup" href="javascript:void(0)" onclick="scrollToSection('home')">
-                        <a href="javascript:void(0)" onclick="scrollToSection('story')">История проекта</a>
-                        <a href="javascript:void(0)" onclick="scrollToSection('partners')">Партнёры</a>
-                        <a href="javascript:void(0)" onclick="scrollToSection('benefits')">Что вы получите</a>
-                        <a href="javascript:void(0)" onclick="scrollToSection('faq')">Вопросы и ответы</a>
-                        <a href="javascript:void(0)" onclick="scrollToSection('partners')">Стать партнёром конкурса</a>
+                            <img src="./assets/logo.jpg" alt="Лидеры Права">
+                            <span>
+                                <span class="footer-brand-name">Лидеры Права</span>
+                                <span class="footer-brand-subtitle">Юридический конкурс для студентов и молодых специалистов.</span>
+                            </span>
+                        </a>
+                        <p class="footer-brand-text">Здесь собраны основные разделы сайта, контакты и короткая справка о проекте без лишних визуальных эффектов.</p>
+                        <div class="footer-micro">
+                            <span>Регистрация до 15 ноября</span>
+                            <span>Студенты и молодые юристы</span>
+                            <span>Стажировки, гранты, наставники</span>
+                        </div>
+                        <a href="javascript:void(0)" onclick="scrollToSection('apply')" class="footer-cta">Подать заявку</a>
+                    </div>
+
+                    <div class="footer-grid">
+                        <div class="footer-card animate-on-scroll stagger-2">
+                            <span class="footer-card-title">Навигация</span>
+                            <div class="footer-links">
+                                <a href="javascript:void(0)" onclick="scrollToSection('story')">История проекта</a>
+                                <a href="javascript:void(0)" onclick="scrollToSection('partners')">Партнёры</a>
+                                <a href="javascript:void(0)" onclick="scrollToSection('benefits')">Что вы получите</a>
+                                <a href="javascript:void(0)" onclick="scrollToSection('faq')">Вопросы и ответы</a>
+                            </div>
+                        </div>
+
+                        <div class="footer-card animate-on-scroll stagger-3">
+                            <span class="footer-card-title">Контакты</span>
+                            <div class="footer-contact-list">
+                                <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+                                <a href="mailto:info@lideriprava.ru">info@lideriprava.ru</a>
+                                <a href="javascript:void(0)" onclick="scrollToSection('partners')">Стать партнёром конкурса</a>
                             </div>
                         </div>
 
@@ -4728,8 +4755,22 @@
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('applicationForm');
             const message = document.getElementById('applicationFormMessage');
+            let isSubmitting = false;
             if (!form || !message) {
                 return;
+            }
+
+            async function parseResponseSafely(response) {
+                const rawText = await response.text();
+                if (!rawText) {
+                    return {};
+                }
+
+                try {
+                    return JSON.parse(rawText);
+                } catch (error) {
+                    return {};
+                }
             }
 
             form.addEventListener('submit', async function(event) {
@@ -4739,7 +4780,14 @@
                     return;
                 }
 
+                if (isSubmitting) {
+                    return;
+                }
+
                 const submitButton = form.querySelector('.form-submit');
+                if (!submitButton) {
+                    return;
+                }
                 const formData = new FormData(form);
                 const payload = {
                     full_name: String(formData.get('full_name') || '').trim(),
@@ -4748,33 +4796,45 @@
                     organization: String(formData.get('organization') || '').trim()
                 };
 
+                isSubmitting = true;
                 submitButton.disabled = true;
                 submitButton.textContent = 'Отправляем...';
                 message.textContent = 'Сохраняем вашу заявку.';
 
+                let timeoutId = null;
                 try {
+                    const controller = new AbortController();
+                    timeoutId = setTimeout(function() {
+                        controller.abort();
+                    }, 15000);
+
                     const response = await fetch('/api/applications', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(payload)
+                        body: JSON.stringify(payload),
+                        signal: controller.signal
                     });
-
-                    const data = await response.json();
+                    const data = await parseResponseSafely(response);
                     if (!response.ok) {
                         message.textContent = data.error || 'Не удалось отправить заявку. Попробуйте ещё раз.';
-                        submitButton.disabled = false;
-                        submitButton.textContent = 'Принять вызов';
                         return;
                     }
 
                     form.reset();
                     message.textContent = 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.';
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Принять вызов';
                 } catch (error) {
-                    message.textContent = 'Сервер недоступен. Убедитесь, что сайт запущен через Python-сервер.';
+                    if (error && error.name === 'AbortError') {
+                        message.textContent = 'Сервер отвечает слишком долго. Проверьте соединение и попробуйте снова.';
+                    } else {
+                        message.textContent = 'Сервер недоступен. Попробуйте ещё раз через несколько секунд.';
+                    }
+                } finally {
+                    if (timeoutId) {
+                        clearTimeout(timeoutId);
+                    }
+                    isSubmitting = false;
                     submitButton.disabled = false;
                     submitButton.textContent = 'Принять вызов';
                 }

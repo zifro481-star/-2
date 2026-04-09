@@ -22,9 +22,15 @@ SESSION_COOKIE_NAME = "leaders_admin_session"
 sessions = {}
 
 
+def db_connect():
+    return sqlite3.connect(DB_PATH, timeout=10)
+
+
 def init_db():
     DATA_DIR.mkdir(exist_ok=True)
-    with sqlite3.connect(DB_PATH) as connection:
+    with db_connect() as connection:
+        connection.execute("PRAGMA journal_mode=WAL")
+        connection.execute("PRAGMA synchronous=NORMAL")
         connection.execute(
             """
             CREATE TABLE IF NOT EXISTS applications (
@@ -125,41 +131,56 @@ def validate_application(payload):
 
 
 class LeadersHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        parsed = urlparse(self.path)
-        path = parsed.path
+    def send_json_error(self, status_code, message):
+        try:
+            json_response(self, status_code, {"error": message})
+        except BrokenPipeError:
+            pass
 
-        if path == "/api/applications":
-            return self.handle_applications_list()
-        if path == "/api/session":
-            return json_response(self, 200, {"authenticated": is_authenticated(self)})
-        if path == "/admin":
-            return self.serve_file("admin.html")
-        if path == "/":
-            return self.serve_file("index.html")
-        return self.serve_static(path)
+    def do_GET(self):
+        try:
+            parsed = urlparse(self.path)
+            path = parsed.path
+
+            if path == "/api/applications":
+                return self.handle_applications_list()
+            if path == "/api/session":
+                return json_response(self, 200, {"authenticated": is_authenticated(self)})
+            if path == "/admin":
+                return self.serve_file("admin.html")
+            if path == "/":
+                return self.serve_file("index.html")
+            return self.serve_static(path)
+        except Exception:
+            return self.send_json_error(500, "Внутренняя ошибка сервера.")
 
     def do_POST(self):
-        parsed = urlparse(self.path)
-        path = parsed.path
+        try:
+            parsed = urlparse(self.path)
+            path = parsed.path
 
-        if path == "/api/applications":
-            return self.handle_application_create()
-        if path == "/api/login":
-            return self.handle_login()
-        if path == "/api/logout":
-            return self.handle_logout()
+            if path == "/api/applications":
+                return self.handle_application_create()
+            if path == "/api/login":
+                return self.handle_login()
+            if path == "/api/logout":
+                return self.handle_logout()
 
-        return json_response(self, 404, {"error": "Маршрут не найден."})
+            return json_response(self, 404, {"error": "Маршрут не найден."})
+        except Exception:
+            return self.send_json_error(500, "Внутренняя ошибка сервера.")
 
     def do_PATCH(self):
-        parsed = urlparse(self.path)
-        path = parsed.path
+        try:
+            parsed = urlparse(self.path)
+            path = parsed.path
 
-        if path.startswith("/api/applications/"):
-            return self.handle_application_update(path)
+            if path.startswith("/api/applications/"):
+                return self.handle_application_update(path)
 
-        return json_response(self, 404, {"error": "Маршрут не найден."})
+            return json_response(self, 404, {"error": "Маршрут не найден."})
+        except Exception:
+            return self.send_json_error(500, "Внутренняя ошибка сервера.")
 
     def log_message(self, format_, *args):
         return
@@ -202,21 +223,24 @@ class LeadersHandler(BaseHTTPRequestHandler):
             return json_response(self, 400, {"error": error})
 
         created_at = datetime.now().astimezone().isoformat(timespec="seconds")
-        with sqlite3.connect(DB_PATH) as connection:
-            cursor = connection.execute(
-                """
-                INSERT INTO applications (full_name, email, phone, organization, created_at)
-                VALUES (?, ?, ?, ?, ?)
-                """,
-                (
-                    cleaned["full_name"],
-                    cleaned["email"],
-                    cleaned["phone"],
-                    cleaned["organization"],
-                    created_at,
-                ),
-            )
-            connection.commit()
+        try:
+            with db_connect() as connection:
+                cursor = connection.execute(
+                    """
+                    INSERT INTO applications (full_name, email, phone, organization, created_at)
+                    VALUES (?, ?, ?, ?, ?)
+                    """,
+                    (
+                        cleaned["full_name"],
+                        cleaned["email"],
+                        cleaned["phone"],
+                        cleaned["organization"],
+                        created_at,
+                    ),
+                )
+                connection.commit()
+        except sqlite3.Error:
+            return json_response(self, 500, {"error": "Не удалось сохранить заявку. Попробуйте еще раз."})
 
         return json_response(
             self,
@@ -231,15 +255,18 @@ class LeadersHandler(BaseHTTPRequestHandler):
         if not is_authenticated(self):
             return json_response(self, 401, {"error": "Требуется авторизация."})
 
-        with sqlite3.connect(DB_PATH) as connection:
-            connection.row_factory = sqlite3.Row
-            rows = connection.execute(
-                """
-                SELECT id, full_name, email, phone, organization, status, admin_notes, created_at
-                FROM applications
-                ORDER BY datetime(created_at) DESC, id DESC
-                """
-            ).fetchall()
+        try:
+            with db_connect() as connection:
+                connection.row_factory = sqlite3.Row
+                rows = connection.execute(
+                    """
+                    SELECT id, full_name, email, phone, organization, status, admin_notes, created_at
+                    FROM applications
+                    ORDER BY datetime(created_at) DESC, id DESC
+                    """
+                ).fetchall()
+        except sqlite3.Error:
+            return json_response(self, 500, {"error": "Не удалось получить заявки."})
 
         applications = [dict(row) for row in rows]
         return json_response(self, 200, {"applications": applications})
@@ -262,16 +289,19 @@ class LeadersHandler(BaseHTTPRequestHandler):
         if status not in {"new", "in_progress", "processed"}:
             return json_response(self, 400, {"error": "Недопустимый статус."})
 
-        with sqlite3.connect(DB_PATH) as connection:
-            cursor = connection.execute(
-                """
-                UPDATE applications
-                SET status = ?, admin_notes = ?
-                WHERE id = ?
-                """,
-                (status, admin_notes, int(application_id)),
-            )
-            connection.commit()
+        try:
+            with db_connect() as connection:
+                cursor = connection.execute(
+                    """
+                    UPDATE applications
+                    SET status = ?, admin_notes = ?
+                    WHERE id = ?
+                    """,
+                    (status, admin_notes, int(application_id)),
+                )
+                connection.commit()
+        except sqlite3.Error:
+            return json_response(self, 500, {"error": "Не удалось обновить заявку."})
 
         if cursor.rowcount == 0:
             return json_response(self, 404, {"error": "Заявка не найдена."})
