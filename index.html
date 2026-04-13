@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet" vid="7">
+    <link rel="stylesheet" href="./style-mobile.css">
 
     <style vid="modified_css">
         /* Fade animation styles - disabled */
@@ -4645,14 +4646,14 @@
 
         <nav class="top-nav" id="mainNav" aria-label="Основная навигация" aria-hidden="false">
             <div class="top-nav-group">
-                <a href="javascript:void(0)" onclick="scrollToSection('home')">Главная</a>
-                <a href="javascript:void(0)" onclick="scrollToSection('story')">История</a>
-                <a href="javascript:void(0)" onclick="scrollToSection('audience')">Для кого</a>
-                <a href="javascript:void(0)" onclick="scrollToSection('partners')">Партнеры</a>
-                <a href="javascript:void(0)" onclick="scrollToSection('benefits')">Что получите</a>
-                <a href="javascript:void(0)" onclick="scrollToSection('timeline')">Этапы</a>
-                <a href="javascript:void(0)" onclick="scrollToSection('faq')">FAQ</a>
-                <a href="javascript:void(0)" onclick="scrollToSection('apply')" class="nav-cta">Регистрация</a>
+                <a class="nav-item" data-key="home" href="javascript:void(0)" onclick="scrollToSection('home')">Главная</a>
+                <a class="nav-item" data-key="story" href="javascript:void(0)" onclick="scrollToSection('story')">История</a>
+                <a class="nav-item" data-key="audience" href="javascript:void(0)" onclick="scrollToSection('audience')">Для кого</a>
+                <a class="nav-item" data-key="partners" href="javascript:void(0)" onclick="scrollToSection('partners')">Партнеры</a>
+                <a class="nav-item" data-key="benefits" href="javascript:void(0)" onclick="scrollToSection('benefits')">Что получите</a>
+                <a class="nav-item" data-key="stages" href="javascript:void(0)" onclick="scrollToSection('timeline')">Этапы</a>
+                <a class="nav-item" data-key="faq" href="javascript:void(0)" onclick="scrollToSection('faq')">FAQ</a>
+                <a class="nav-item nav-item-cta nav-cta" data-key="registration" href="javascript:void(0)" onclick="scrollToSection('apply')">Подать заявку</a>
             </div>
         </nav>
     </header>
@@ -4665,13 +4666,24 @@
                 <div class="hero-content hero-copy" vid="50">
                     <span class="eyebrow hero-reveal hero-reveal-delay-1">Регистрация открыта до 15 ноября</span>
                     <h1 class="display-text" vid="57">
-                        <span class="hero-line hero-line-1" vid="58">лидеры</span><br vid="59">
-                        <span class="hero-line hero-line-2" vid="60">права</span><br vid="61">
-                        <span class="hero-line hero-line-3 text-red" vid="62">начинаются</span><br vid="63">
-                        <span class="hero-line hero-line-4" vid="64">с вашеи</span><br vid="65">
-                        <span class="hero-line hero-line-5" vid="66">заявки</span>
+                        <span class="desktop-hero-title">
+                            <span class="hero-line hero-line-1" vid="58">лидеры</span><br vid="59">
+                            <span class="hero-line hero-line-2" vid="60">права</span><br vid="61">
+                            <span class="hero-line hero-line-3 text-red" vid="62">начинаются</span><br vid="63">
+                            <span class="hero-line hero-line-4" vid="64">с вашеи</span><br vid="65">
+                            <span class="hero-line hero-line-5" vid="66">заявки</span>
+                        </span>
+                        <span class="mobile-hero-title">Конкурс для лидеров юридической профессии</span>
                     </h1>
-
+                    <p class="mobile-hero-subtitle">Стажировки, наставники и гранты — для студентов и молодых юристов</p>
+                    <div class="deadline-timer" id="deadlineTimer">
+                        <div class="timer-block"><span id="tDays">00</span><label>дней</label></div>
+                        <div class="timer-sep">:</div>
+                        <div class="timer-block"><span id="tHours">00</span><label>часов</label></div>
+                        <div class="timer-sep">:</div>
+                        <div class="timer-block"><span id="tMins">00</span><label>минут</label></div>
+                    </div>
+                    <a href="#apply" class="hero-cta mobile-hero-cta">Подать заявку</a>
                 </div>
 
             </div>
@@ -4816,16 +4828,25 @@
             <h2 class="section-header">Для кого конкурс</h2>
             <div class="audience-grid">
                 <article class="audience-card animate-on-scroll stagger-1">
-                    <h3>Студенты-юристы</h3>
-                    <p>Для тех, кто хочет выйти за пределы учебных кейсов, собрать сильное портфолио и попасть в профессиональную среду ещё во время обучения.</p>
+                    <div class="audience-icon" aria-hidden="true">🎓</div>
+                    <div class="audience-content">
+                        <h3>Студенты-юристы</h3>
+                        <p>Для тех, кто хочет выйти за пределы учебных кейсов, собрать сильное портфолио и попасть в профессиональную среду ещё во время обучения.</p>
+                    </div>
                 </article>
                 <article class="audience-card animate-on-scroll stagger-2">
-                    <h3>Молодые специалисты</h3>
-                    <p>Для начинающих юристов, которым нужен заметный карьерный рывок, новые связи, публичный проект и понятный следующий шаг в профессии.</p>
+                    <div class="audience-icon" aria-hidden="true">⚖️</div>
+                    <div class="audience-content">
+                        <h3>Молодые специалисты</h3>
+                        <p>Для начинающих юристов, которым нужен заметный карьерный рывок, новые связи, публичный проект и понятный следующий шаг в профессии.</p>
+                    </div>
                 </article>
                 <article class="audience-card animate-on-scroll stagger-3">
-                    <h3>Авторы правовых инициатив</h3>
-                    <p>Для тех, у кого уже есть идея, исследование или прикладное решение и кто хочет доработать его с наставниками и представить сильному жюри.</p>
+                    <div class="audience-icon" aria-hidden="true">💡</div>
+                    <div class="audience-content">
+                        <h3>Авторы правовых инициатив</h3>
+                        <p>Для тех, у кого уже есть идея, исследование или прикладное решение и кто хочет доработать его с наставниками и представить сильному жюри.</p>
+                    </div>
                 </article>
             </div>
         </div>
@@ -5047,6 +5068,26 @@
         </div>
     </section>
 
+    <section class="testimonials mobile-only" id="testimonials">
+        <div class="container">
+            <h2>Что говорят участники</h2>
+            <div class="testimonial-card">
+                <div class="t-avatar">АС</div>
+                <div class="t-body">
+                    <p class="t-quote">«Конкурс помог мне попасть на стажировку в юридическую фирму ещё на 4-м курсе»</p>
+                    <p class="t-author">Анна С., победитель 2024, МГУ</p>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="t-avatar">ИП</div>
+                <div class="t-body">
+                    <p class="t-quote">«После финала я получил(а) наставника и предложение о практике — это реально меняет старт карьеры»</p>
+                    <p class="t-author">Илья П., финалист 2025, СПбГУ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="timeline" class="timeline">
         <div class="container">
             <h2 class="section-header">Этапы участия</h2>
@@ -5093,6 +5134,22 @@
                 </div>
                 
                 <form class="form-fields" id="applicationForm" vid="102">
+                    <div class="form-progress">
+                        <div class="progress-step active" data-step="1">
+                            <div class="step-dot">1</div>
+                            <span>О себе</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="2">
+                            <div class="step-dot">2</div>
+                            <span>Направление</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="3">
+                            <div class="step-dot">3</div>
+                            <span>Подтверждение</span>
+                        </div>
+                    </div>
                     <div class="form-group" vid="103">
                         <input type="text" name="full_name" placeholder="Фамилия Имя Отчество" required="" vid="104">
                     </div>
@@ -5535,6 +5592,14 @@
         <img src="" alt="" id="lightboxImg">
     </div>
 
+    <div class="mobile-sticky-bar" id="stickyCta">
+        <div class="sticky-bar-left">
+            <span class="sticky-label">Приём заявок</span>
+            <span class="sticky-deadline">до 15 ноября</span>
+        </div>
+        <a href="#apply" class="sticky-btn">Подать заявку</a>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const overlay = document.getElementById('lightboxOverlay');
@@ -5664,4 +5729,5 @@
             });
         });
     </script>
+    <script src="./scripts-mobile.js"></script>
 </body></html>
