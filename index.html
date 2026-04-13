@@ -4047,6 +4047,194 @@
                 align-items: flex-start;
             }
         }
+
+        /* Mobile polish: Story + Partners */
+        @media (max-width: 900px) {
+            .story .section-header {
+                font-size: clamp(2.1rem, 9vw, 3rem);
+                margin-bottom: 1rem;
+            }
+            .timeline-highlight {
+                justify-content: flex-start;
+                gap: 0.8rem;
+                margin-bottom: 1.1rem;
+                padding: 0.25rem 0;
+            }
+            .highlight-year {
+                font-size: clamp(1.6rem, 8vw, 2.2rem);
+            }
+            .highlight-divider {
+                width: 42px;
+                height: 2px;
+            }
+            .story-photo-grid {
+                display: flex;
+                gap: 0.75rem;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: 0.2rem 0.2rem 0.8rem;
+                margin-bottom: 1.1rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+            .photo-card {
+                flex: 0 0 78vw;
+                min-width: 78vw;
+                height: 230px;
+                border-radius: 1.1rem;
+                scroll-snap-align: start;
+            }
+            .photo-title {
+                font-size: 1rem;
+            }
+            .photo-desc {
+                font-size: 0.8rem;
+            }
+            .story-stats {
+                border-radius: 1.25rem;
+                padding: 1rem 0.7rem;
+                gap: 0.45rem;
+            }
+            .stat-item {
+                padding: 0.55rem 0.45rem;
+            }
+            .stat-number {
+                font-size: clamp(1.4rem, 8vw, 2rem);
+            }
+            .stat-label {
+                font-size: 0.66rem;
+            }
+
+            .partners-strip {
+                padding: 1.2rem 0 2.4rem;
+            }
+            .partners-shell {
+                border-radius: 1.2rem;
+                padding: 1.2rem 0;
+                margin: 0;
+            }
+            .partners-intro,
+            .partners-logos,
+            .partners-cta {
+                padding-left: 0.9rem;
+                padding-right: 0.9rem;
+            }
+            .partners-intro {
+                gap: 0.9rem;
+                padding-bottom: 1rem;
+            }
+            .partners-title {
+                font-size: clamp(2rem, 10vw, 2.8rem);
+                line-height: 1.02;
+                letter-spacing: -0.02em;
+            }
+            .partners-title br {
+                display: none;
+            }
+            .partners-intro-text {
+                font-size: 0.95rem;
+                line-height: 1.55;
+            }
+            .partners-stats-row {
+                gap: 0.55rem;
+                margin-top: 0.65rem;
+            }
+            .partner-stat {
+                flex: 1 1 0;
+                min-width: 0;
+                padding: 0.65rem 0.6rem;
+                border-radius: 0.8rem;
+            }
+            .partner-stat-num {
+                font-size: 1.15rem;
+            }
+            .partner-stat-label {
+                font-size: 0.62rem;
+                letter-spacing: 0.04em;
+                margin-top: 0.2rem;
+            }
+            .partners-perks {
+                gap: 0.5rem;
+            }
+            .partner-perk {
+                gap: 0.7rem;
+                padding: 0.75rem;
+                align-items: flex-start;
+                border-radius: 0.95rem;
+            }
+            .partner-perk-icon {
+                width: 2.1rem;
+                height: 2.1rem;
+                border-radius: 0.6rem;
+            }
+            .partner-perk-text {
+                font-size: 0.84rem;
+            }
+            .partner-perk-sub {
+                font-size: 0.73rem;
+                line-height: 1.35;
+            }
+            .partners-logos-title {
+                margin-bottom: 0.9rem;
+            }
+            .partners-logos-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.6rem;
+            }
+            .partner-logo-card {
+                min-height: 108px;
+                border-radius: 0.9rem;
+                padding: 0.75rem;
+            }
+            .partner-logo-card img {
+                max-height: 70px;
+            }
+            .partners-cta {
+                margin-top: 0.2rem;
+            }
+            .partners-cta-box {
+                padding: 1rem;
+                gap: 1rem;
+                border-radius: 1rem;
+            }
+            .partners-cta-content h3 {
+                font-size: clamp(1.2rem, 7vw, 1.55rem);
+                margin-bottom: 0.55rem;
+            }
+            .partners-cta-content p {
+                font-size: 0.88rem;
+                line-height: 1.45;
+            }
+            .partners-cta-actions {
+                width: 100%;
+                gap: 0.55rem;
+            }
+            .partners-cta-btn {
+                width: 100%;
+                min-height: 47px;
+                font-size: 0.7rem;
+                letter-spacing: 0.04em;
+                padding: 0.7rem 0.95rem;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .photo-card {
+                flex-basis: 86vw;
+                min-width: 86vw;
+                height: 215px;
+            }
+            .partners-logos-grid,
+            .partners-stats-row {
+                grid-template-columns: 1fr;
+            }
+            .partners-stats-row {
+                display: grid;
+            }
+            .partner-stat {
+                width: 100%;
+            }
+        }
     </style>
     <script>
     function scrollToSection(id) {
