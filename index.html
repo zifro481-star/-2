@@ -3709,6 +3709,87 @@
                 justify-content: flex-start;
             }
         }
+
+        /* Mobile hardening for iPhone/Android navigation and narrow screens */
+        @media (max-width: 768px) {
+            .site-header {
+                align-items: stretch;
+            }
+            .brand-lockup {
+                width: 100%;
+            }
+            .top-nav {
+                max-height: none;
+                overflow: visible;
+            }
+            .top-nav-group {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.5rem;
+                white-space: normal;
+            }
+            .top-nav a {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                min-height: 44px;
+                white-space: normal;
+                line-height: 1.25;
+            }
+            .top-nav .nav-cta {
+                grid-column: 1 / -1;
+            }
+            .site-header.brand-collapsed {
+                width: calc(100% - 1rem);
+                transform: none;
+                border-radius: 24px;
+            }
+            .site-header.brand-collapsed .brand-copy {
+                max-width: 260px;
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
+            .site-header.brand-collapsed .top-nav {
+                max-width: none;
+                max-height: none;
+                opacity: 1;
+                pointer-events: auto;
+                margin-left: 0;
+                clip-path: none;
+                transform: none;
+                filter: none;
+            }
+            .site-header.brand-collapsed .top-nav-group {
+                transform: none;
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .site-header {
+                width: calc(100% - 0.75rem);
+                padding: 0.75rem;
+                top: 0.5rem;
+            }
+            .top-nav-group {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                padding-top: calc(14rem + 2vh);
+            }
+            .hero .display-text {
+                font-size: clamp(2.15rem, 13vw, 3.1rem);
+                line-height: 0.9;
+            }
+            .section-header {
+                font-size: clamp(1.85rem, 9.5vw, 2.65rem);
+            }
+        }
     </style>
     <script>
     function scrollToSection(id) {
@@ -4568,6 +4649,7 @@
             const topNav = document.querySelector('.top-nav');
             const brandLogo = document.querySelector('.brand-logo');
             const navLinks = topNav ? Array.from(topNav.querySelectorAll('a')) : [];
+            const mobileNavQuery = window.matchMedia('(max-width: 768px)');
             let navStateTimer = null;
 
             if (!siteHeader || !brandLockup || !brandLogo) return;
@@ -4620,10 +4702,29 @@
                 });
             });
 
-            updateBrandShift();
+            function applyMobileHeaderState() {
+                if (!mobileNavQuery.matches) {
+                    updateBrandShift();
+                    return;
+                }
+
+                clearNavFxState();
+                siteHeader.classList.remove('brand-collapsed');
+                brandLockup.setAttribute('aria-expanded', 'true');
+                if (topNav) {
+                    topNav.setAttribute('aria-hidden', 'false');
+                }
+                updateBrandShift();
+            }
+
+            applyMobileHeaderState();
 
             brandLockup.addEventListener('click', function(event) {
                 event.preventDefault();
+                if (mobileNavQuery.matches) {
+                    scrollToSection('home');
+                    return;
+                }
 
                 updateBrandShift();
                 const isCollapsed = siteHeader.classList.toggle('brand-collapsed');
@@ -4634,7 +4735,12 @@
                 }
             });
 
-            window.addEventListener('resize', updateBrandShift, { passive: true });
+            window.addEventListener('resize', applyMobileHeaderState, { passive: true });
+            if (mobileNavQuery.addEventListener) {
+                mobileNavQuery.addEventListener('change', applyMobileHeaderState);
+            } else if (mobileNavQuery.addListener) {
+                mobileNavQuery.addListener(applyMobileHeaderState);
+            }
         });
 
         document.addEventListener('DOMContentLoaded', function() {
