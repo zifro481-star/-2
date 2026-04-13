@@ -4308,45 +4308,49 @@
                 letter-spacing: 0.08em;
             }
             #partners .partners-title {
-                font-size: clamp(1.55rem, 8vw, 2.15rem);
-                line-height: 1.05;
-                letter-spacing: -0.01em;
+                font-size: clamp(1.9rem, 9.5vw, 2.7rem);
+                line-height: 1.08;
+                letter-spacing: -0.015em;
+                word-break: normal;
             }
             #partners .partners-title br {
-                display: none;
+                display: inline;
+            }
+            #partners .partners-title span::after {
+                content: " ";
             }
             #partners .partners-intro-text {
-                font-size: 0.89rem;
-                line-height: 1.45;
-                padding: 0.75rem 0.8rem;
+                font-size: 1rem;
+                line-height: 1.55;
+                padding: 0.9rem;
                 border-radius: 0.85rem;
                 background: rgba(255, 255, 255, 0.88);
                 border: 1px solid rgba(10, 10, 10, 0.08);
             }
             #partners .partners-stats-row {
                 display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 0.45rem;
-                margin-top: 0.15rem;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.6rem;
+                margin-top: 0.2rem;
             }
             #partners .partner-stat {
                 min-width: 0;
-                padding: 0.55rem 0.45rem;
+                padding: 0.7rem 0.6rem;
                 border-radius: 0.75rem;
             }
             #partners .partner-stat-num {
-                font-size: 1rem;
+                font-size: 1.25rem;
             }
             #partners .partner-stat-label {
-                font-size: 0.58rem;
-                line-height: 1.25;
-                letter-spacing: 0.03em;
+                font-size: 0.72rem;
+                line-height: 1.3;
+                letter-spacing: 0.04em;
             }
             #partners .partners-perks {
-                gap: 0.45rem;
+                gap: 0.55rem;
             }
             #partners .partner-perk {
-                padding: 0.65rem 0.7rem;
+                padding: 0.85rem 0.9rem;
                 gap: 0.6rem;
                 border-radius: 0.8rem;
                 background: rgba(255, 255, 255, 0.92);
@@ -4362,13 +4366,13 @@
                 border-radius: 0.55rem;
             }
             #partners .partner-perk-text {
-                font-size: 0.79rem;
-                line-height: 1.3;
+                font-size: 0.96rem;
+                line-height: 1.35;
             }
             #partners .partner-perk-sub {
-                font-size: 0.69rem;
-                margin-top: 0.12rem;
-                line-height: 1.3;
+                font-size: 0.84rem;
+                margin-top: 0.16rem;
+                line-height: 1.35;
             }
             #partners .partners-logos {
                 margin-bottom: 1rem;
@@ -4383,13 +4387,13 @@
                 gap: 0.5rem;
             }
             #partners .partner-logo-card {
-                min-height: 88px;
-                padding: 0.55rem;
+                min-height: 98px;
+                padding: 0.65rem;
                 border-radius: 0.75rem;
                 box-shadow: 0 6px 14px rgba(10, 10, 10, 0.06);
             }
             #partners .partner-logo-card img {
-                max-height: 52px;
+                max-height: 58px;
                 max-width: 86%;
             }
             #partners .partners-cta {
@@ -4408,8 +4412,8 @@
                 margin-bottom: 0.4rem;
             }
             #partners .partners-cta-content p {
-                font-size: 0.82rem;
-                line-height: 1.4;
+                font-size: 0.9rem;
+                line-height: 1.5;
             }
             #partners .partners-cta-actions {
                 width: 100%;
@@ -4417,9 +4421,9 @@
             }
             #partners .partners-cta-btn {
                 width: 100%;
-                min-height: 46px;
-                padding: 0.62rem 0.85rem;
-                font-size: 0.66rem;
+                min-height: 48px;
+                padding: 0.7rem 0.9rem;
+                font-size: 0.72rem;
                 letter-spacing: 0.03em;
             }
         }
@@ -4433,6 +4437,12 @@
             }
             #partners .partner-logo-card {
                 min-height: 82px;
+            }
+            #partners .partner-perk-text {
+                font-size: 0.9rem;
+            }
+            #partners .partner-perk-sub {
+                font-size: 0.8rem;
             }
         }
     </style>
