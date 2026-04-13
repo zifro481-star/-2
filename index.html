@@ -732,6 +732,30 @@
             transition: transform var(--header-sync-duration) var(--header-spring), opacity var(--header-sync-duration) var(--header-spring);
         }
 
+        .mobile-nav-toggle {
+            display: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            border: 1px solid rgba(10, 10, 10, 0.12);
+            background: rgba(255, 255, 255, 0.94);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .mobile-nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: #141418;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
         .site-header.brand-collapsed {
             width: 92px;
             gap: 0;
@@ -3790,6 +3814,239 @@
                 font-size: clamp(1.85rem, 9.5vw, 2.65rem);
             }
         }
+
+        @media (max-width: 900px) {
+            body.mobile-menu-open {
+                overflow: hidden;
+            }
+            section {
+                padding: 3.5rem 0;
+            }
+            .site-header {
+                position: sticky;
+                top: 0.5rem;
+                left: auto;
+                transform: none;
+                width: calc(100% - 1rem);
+                margin: 0 auto;
+                padding: 0.7rem;
+                border-radius: 22px;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                align-items: center;
+                gap: 0.65rem;
+                overflow: visible;
+            }
+            .site-header::after {
+                display: none;
+            }
+            .brand-lockup {
+                width: 100%;
+                min-width: 0;
+            }
+            .brand-logo {
+                width: 48px;
+                height: 48px;
+                border-radius: 14px;
+                transform: none;
+            }
+            .brand-copy {
+                max-width: none;
+            }
+            .brand-title {
+                font-size: 0.88rem;
+                letter-spacing: 0.06em;
+            }
+            .brand-subtitle {
+                font-size: 0.66rem;
+            }
+            .mobile-nav-toggle {
+                display: inline-flex;
+            }
+            .top-nav {
+                grid-column: 1 / -1;
+                width: 100%;
+                margin-left: 0;
+                max-width: none;
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                pointer-events: none;
+                clip-path: inset(0 0 100% 0);
+                transform: none;
+                transition: max-height 0.3s ease, opacity 0.24s ease;
+            }
+            .top-nav-group {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.45rem;
+                white-space: normal;
+                padding-top: 0.35rem;
+            }
+            .top-nav a {
+                width: 100%;
+                min-height: 46px;
+                padding: 0.75rem 0.9rem;
+                justify-content: center;
+                text-align: center;
+                font-size: 0.74rem;
+                letter-spacing: 0.06em;
+                border: 1px solid rgba(10, 10, 10, 0.08);
+                background: rgba(255, 255, 255, 0.92);
+                white-space: normal;
+                line-height: 1.25;
+            }
+            .top-nav a::after {
+                display: none;
+            }
+            .top-nav .nav-cta {
+                background: var(--c-red);
+                border-color: rgba(234, 10, 42, 0.5);
+            }
+            .site-header.mobile-nav-open .top-nav {
+                max-height: calc(100vh - 6rem);
+                opacity: 1;
+                overflow-y: auto;
+                pointer-events: auto;
+                clip-path: inset(0 0 0 0);
+            }
+            .site-header.mobile-nav-open .mobile-nav-toggle span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            .site-header.mobile-nav-open .mobile-nav-toggle span:nth-child(2) {
+                opacity: 0;
+            }
+            .site-header.mobile-nav-open .mobile-nav-toggle span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+            .site-header.brand-collapsed,
+            .site-header.brand-collapsed .brand-lockup,
+            .site-header.brand-collapsed .brand-copy,
+            .site-header.brand-collapsed .top-nav,
+            .site-header.brand-collapsed .top-nav-group {
+                width: auto;
+                max-width: none;
+                max-height: none;
+                opacity: 1;
+                transform: none;
+                filter: none;
+                clip-path: none;
+                pointer-events: auto;
+            }
+            .hero {
+                min-height: auto;
+                padding-top: calc(8.25rem + env(safe-area-inset-top));
+                padding-bottom: 2.6rem;
+            }
+            .hero-grid,
+            .benefits-hero,
+            .benefits-grid,
+            .benefits-metrics,
+            .timeline-grid,
+            .form-layout,
+            .faq-columns,
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+            .hero-content,
+            .hero-copy {
+                width: 100%;
+                max-width: none;
+            }
+            .hero-panel {
+                margin-top: 0.8rem;
+                padding: 1.25rem;
+                border-radius: 1.2rem;
+            }
+            .partners-shell,
+            .faq-shell,
+            .footer-shell {
+                margin: 0;
+                border-radius: 1.25rem;
+            }
+            .partners-intro,
+            .partners-logos,
+            .partners-cta {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .partners-intro {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding-bottom: 1.2rem;
+            }
+            .partners-stats-row,
+            .story-stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .partners-logos-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .story-photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 130px;
+                gap: 0.55rem;
+            }
+            .timeline-flow::before {
+                left: 1rem;
+            }
+            .timeline-card {
+                grid-template-columns: auto 1fr;
+                padding: 0.95rem;
+            }
+            .form-group input {
+                min-height: 52px;
+                font-size: 16px;
+            }
+            .form-submit,
+            .partners-cta-btn,
+            .hero-cta,
+            .secondary-cta {
+                min-height: 50px;
+                width: 100%;
+            }
+            .faq-question {
+                min-height: 56px;
+                padding: 1rem 1.1rem;
+            }
+            .footer-grid,
+            .footer-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .display-text {
+                font-size: clamp(2.05rem, 11.5vw, 2.95rem);
+                line-height: 0.9;
+            }
+            .section-header {
+                font-size: clamp(1.75rem, 8.5vw, 2.4rem);
+            }
+            .brand-subtitle {
+                display: none;
+            }
+            .partners-stats-row,
+            .story-stats,
+            .partners-logos-grid,
+            .story-photo-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline-highlight {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .timeline-highlight .highlight-divider {
+                width: 100%;
+                height: 1px;
+            }
+            .form-consent label {
+                gap: 0.55rem;
+                align-items: flex-start;
+            }
+        }
     </style>
     <script>
     function scrollToSection(id) {
@@ -3842,10 +4099,17 @@
             const heroPanel = document.querySelector('.hero-panel');
             const heroGraphic = document.querySelector('.hero-graphic');
             const heroTitle = document.querySelector('.hero .display-text');
+            const disableHeroMotion = window.matchMedia('(max-width: 900px)').matches;
 
             let parallaxX = 0;
             let parallaxY = 0;
             let scrollTicking = false;
+
+            if (disableHeroMotion) {
+                if (heroCopy) heroCopy.style.transform = 'none';
+                if (heroPanel) heroPanel.style.transform = 'none';
+                return;
+            }
 
             /* Hero animations disabled */
             if (hero) {
@@ -3916,6 +4180,7 @@
         // Lightweight cursor-follow parallax for red CTA elements
         document.addEventListener('DOMContentLoaded', function() {
             let frameId = null;
+            if (window.matchMedia('(max-width: 900px)').matches) return;
 
             window.addEventListener('pointermove', function(event) {
                 if (frameId !== null) return;
@@ -3971,8 +4236,13 @@
                 <span class="brand-subtitle">Юридический конкурс</span>
             </span>
         </a>
+        <button type="button" class="mobile-nav-toggle" aria-label="Открыть меню" aria-controls="mainNav" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-        <nav class="top-nav" aria-label="Основная навигация" aria-hidden="false">
+        <nav class="top-nav" id="mainNav" aria-label="Основная навигация" aria-hidden="false">
             <div class="top-nav-group">
                 <a href="javascript:void(0)" onclick="scrollToSection('home')">Главная</a>
                 <a href="javascript:void(0)" onclick="scrollToSection('story')">История</a>
@@ -4648,8 +4918,9 @@
             const brandLockup = document.querySelector('.brand-lockup');
             const topNav = document.querySelector('.top-nav');
             const brandLogo = document.querySelector('.brand-logo');
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
             const navLinks = topNav ? Array.from(topNav.querySelectorAll('a')) : [];
-            const mobileNavQuery = window.matchMedia('(max-width: 768px)');
+            const mobileNavQuery = window.matchMedia('(max-width: 900px)');
             let navStateTimer = null;
 
             if (!siteHeader || !brandLockup || !brandLogo) return;
@@ -4687,23 +4958,49 @@
                 }, duration);
             }
 
+            function setMobileMenuState(isOpen) {
+                if (!mobileNavQuery.matches) {
+                    siteHeader.classList.remove('mobile-nav-open');
+                    document.body.classList.remove('mobile-menu-open');
+                    if (mobileNavToggle) {
+                        mobileNavToggle.setAttribute('aria-expanded', 'false');
+                    }
+                    return;
+                }
+
+                siteHeader.classList.toggle('mobile-nav-open', isOpen);
+                document.body.classList.toggle('mobile-menu-open', isOpen);
+                if (mobileNavToggle) {
+                    mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
+                    mobileNavToggle.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+                }
+                if (topNav) {
+                    topNav.setAttribute('aria-hidden', String(!isOpen));
+                }
+            }
+
             navLinks.forEach(function(link, index) {
                 link.style.setProperty('--nav-index', String(index));
                 link.style.setProperty('--nav-index-reverse', String(navLinks.length - index - 1));
             });
 
             navLinks.forEach(function(link) {
-                if (link.classList.contains('nav-cta')) return;
                 link.addEventListener('click', function() {
-                    link.classList.add('nav-oval-active');
-                    window.setTimeout(function() {
-                        link.classList.remove('nav-oval-active');
-                    }, 520);
+                    if (!link.classList.contains('nav-cta')) {
+                        link.classList.add('nav-oval-active');
+                        window.setTimeout(function() {
+                            link.classList.remove('nav-oval-active');
+                        }, 520);
+                    }
+                    if (mobileNavQuery.matches) {
+                        setMobileMenuState(false);
+                    }
                 });
             });
 
             function applyMobileHeaderState() {
                 if (!mobileNavQuery.matches) {
+                    setMobileMenuState(false);
                     updateBrandShift();
                     return;
                 }
@@ -4711,9 +5008,7 @@
                 clearNavFxState();
                 siteHeader.classList.remove('brand-collapsed');
                 brandLockup.setAttribute('aria-expanded', 'true');
-                if (topNav) {
-                    topNav.setAttribute('aria-hidden', 'false');
-                }
+                setMobileMenuState(false);
                 updateBrandShift();
             }
 
@@ -4722,6 +5017,7 @@
             brandLockup.addEventListener('click', function(event) {
                 event.preventDefault();
                 if (mobileNavQuery.matches) {
+                    setMobileMenuState(false);
                     scrollToSection('home');
                     return;
                 }
@@ -4733,6 +5029,26 @@
                 if (topNav) {
                     topNav.setAttribute('aria-hidden', String(isCollapsed));
                 }
+            });
+
+            if (mobileNavToggle) {
+                mobileNavToggle.addEventListener('click', function() {
+                    const isOpen = siteHeader.classList.contains('mobile-nav-open');
+                    setMobileMenuState(!isOpen);
+                });
+            }
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && mobileNavQuery.matches) {
+                    setMobileMenuState(false);
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!mobileNavQuery.matches) return;
+                if (!siteHeader.classList.contains('mobile-nav-open')) return;
+                if (siteHeader.contains(event.target)) return;
+                setMobileMenuState(false);
             });
 
             window.addEventListener('resize', applyMobileHeaderState, { passive: true });
