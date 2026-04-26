@@ -1,8 +1,8 @@
 #!/usr/bin/expect -f
 set timeout 180
-set password "cD4aGX-Db_^*L+"
+set password "dt@1eAb+u4zjP7"
 
-spawn ssh root@83.217.201.60 "mkdir -p /var/www/lideryprava"
+spawn ssh root@72.56.9.90 "mkdir -p /var/www/lideryprava"
 expect "password:"
 send "$password\r"
 expect "#"

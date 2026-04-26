@@ -872,7 +872,7 @@
         .top-nav a:focus-visible,
         .top-nav a.nav-oval-active {
             color: #fff;
-            transform: translate3d(0, -3px, 0) scale(1.01);
+            transform: none;
         }
 
         .top-nav a:hover::after,
@@ -886,8 +886,8 @@
         .top-nav .nav-cta {
             background-color: var(--c-red);
             color: #fff;
-            transform: translate3d(var(--red-float-x, 0px), var(--red-float-y, 0px), 0);
-            will-change: transform;
+            transform: none;
+            will-change: auto;
         }
 
         .top-nav .nav-cta::after {
@@ -897,7 +897,7 @@
         .top-nav .nav-cta:hover {
             background-color: #c90824;
             color: #fff;
-            transform: translate3d(var(--red-float-x, 0px), calc(var(--red-float-y, 0px) - 3px), 0) scale(1.01);
+            transform: none;
         }
 
         /* All animations disabled */
@@ -1094,6 +1094,15 @@
 
         .hero .display-text {
             animation: none;
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+            word-spacing: normal;
+        }
+
+        .hero .hero-line-4 {
+            font-size: 0.9em;
+            word-spacing: 0.16em;
+            margin-left: 0.02em;
         }
 
         .hero-content {
@@ -1385,7 +1394,7 @@
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            padding-top: 1rem;
+            padding-top: 3.4rem;
         }
 
         .partners-intro-text {
@@ -1570,7 +1579,7 @@
 
         .partners-logos-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1.25rem;
         }
 
@@ -1614,8 +1623,27 @@
             width: auto;
             height: auto;
             object-fit: contain;
+            object-position: center;
             filter: grayscale(30%);
             transition: filter 0.4s ease, transform 0.4s ease;
+        }
+
+        .partners-logos-grid .partner-logo-card:nth-child(1) img {
+            max-width: 98%;
+            max-height: 140px;
+            margin: 0 auto;
+        }
+
+        .partners-logos-grid .partner-logo-card:nth-child(2) img {
+            max-width: 96%;
+            max-height: 136px;
+            margin: 0 auto;
+        }
+
+        .partners-logos-grid .partner-logo-card:nth-child(4) img {
+            max-width: 72%;
+            max-height: 92px;
+            margin: 0 auto;
         }
 
         .partner-logo-card:hover img {
@@ -1673,6 +1701,9 @@
             gap: 0.75rem;
             padding: 1.25rem 2.5rem;
             border-radius: 999px;
+            border: none;
+            outline: none;
+            appearance: none;
             font-weight: 800;
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -1747,6 +1778,7 @@
             font-size: clamp(3rem, 5vw, 6rem);
             margin-bottom: 2.5rem;
             text-transform: uppercase;
+            word-spacing: 0.18em;
             border-bottom: 2px solid var(--c-text);
             padding-bottom: 1rem;
         }
@@ -2371,9 +2403,9 @@
         }
 
         .benefit-card-large .benefit-icon {
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+            background: rgba(234, 10, 42, 0.1);
+            color: var(--c-red);
+            box-shadow: inset 0 0 0 1px rgba(234, 10, 42, 0.14);
         }
 
         .benefit-icon svg {
@@ -4412,6 +4444,18 @@
                 max-height: 58px;
                 max-width: 86%;
             }
+            #partners .partners-logos-grid .partner-logo-card:nth-child(1) img {
+                max-height: 72px;
+                max-width: 98%;
+            }
+            #partners .partners-logos-grid .partner-logo-card:nth-child(2) img {
+                max-height: 68px;
+                max-width: 96%;
+            }
+            #partners .partners-logos-grid .partner-logo-card:nth-child(4) img {
+                max-height: 46px;
+                max-width: 66%;
+            }
             #partners .partners-cta {
                 margin-top: 0;
             }
@@ -4837,7 +4881,7 @@
                         <span class="hero-line hero-line-1" vid="58">лидеры</span><br vid="59">
                         <span class="hero-line hero-line-2" vid="60">права</span><br vid="61">
                         <span class="hero-line hero-line-3 text-red" vid="62">начинаются</span><br vid="63">
-                        <span class="hero-line hero-line-4" vid="64">с вашеи</span><br vid="65">
+                        <span class="hero-line hero-line-4 text-red" vid="64">с вашей</span><br vid="65">
                         <span class="hero-line hero-line-5" vid="66">заявки</span>
                     </h1>
 
@@ -4954,14 +4998,14 @@
                     <div class="photo-info">
                         <span class="photo-year">2025</span>
                         <span class="photo-title">Рекорд участников</span>
-                        <span class="photo-desc">500+ участников</span>
+                        <span class="photo-desc">1000+ участников</span>
                     </div>
                 </div>
             </div>
 
             <div class="story-stats">
                 <div class="stat-item animate-on-scroll stagger-1">
-                    <span class="stat-number">500+</span>
+                    <span class="stat-number">1000+</span>
                     <span class="stat-label">участников</span>
                 </div>
                 <div class="stat-item animate-on-scroll stagger-2">
@@ -5009,7 +5053,7 @@
                         Станьте партнёром
                     </span>
                     <h2 class="partners-title">
-                        Почему <span>500+<br>организаций</span><br>выбирают нас
+                        Почему <span>1000+<br>организаций</span><br>выбирают нас
                     </h2>
                     <div class="partners-stats-row">
                         <div class="partner-stat">
@@ -5017,7 +5061,7 @@
                             <span class="partner-stat-label">ведущих вузов</span>
                         </div>
                         <div class="partner-stat">
-                            <span class="partner-stat-num">10 000+</span>
+                            <span class="partner-stat-num">1000+</span>
                             <span class="partner-stat-label">участников</span>
                         </div>
                         <div class="partner-stat">
@@ -5075,28 +5119,22 @@
                 <div class="partners-logos-title">Нам доверяют</div>
                 <div class="partners-logos-grid">
                     <div class="partner-logo-card">
-                        <img src="./assets/partners/mgya.png" alt="МГЮА">
+                        <img src="./assets/partners/логотип аюр.jpeg" alt="АЮР">
                     </div>
                     <div class="partner-logo-card">
-                        <img src="./assets/partners/mgimo.jpg" alt="МГИМО">
+                        <img src="./assets/partners/логотип ассоциации.jpg" alt="Ассоциация">
                     </div>
                     <div class="partner-logo-card">
-                        <img src="./assets/partners/hse.png" alt="ВШЭ">
+                        <img src="./assets/partners/логотип аспб.png" alt="АСПБ">
                     </div>
                     <div class="partner-logo-card">
-                        <img src="./assets/partners/spbu.jpg" alt="СПбГУ">
+                        <img src="./assets/partners/pravo.png" alt="Право.ру">
                     </div>
                     <div class="partner-logo-card">
-                        <img src="./assets/partners/minjust.png" alt="Минюст">
+                        <img src="./assets/partners/ай-тех логотип.png" alt="Ай-Тех">
                     </div>
                     <div class="partner-logo-card">
-                        <img src="./assets/partners/duma.png" alt="Госдума">
-                    </div>
-                    <div class="partner-logo-card">
-                        <img src="./assets/partners/pravo.png" alt="Право.ru">
-                    </div>
-                    <div class="partner-logo-card">
-                        <img src="./assets/partners/roscongress.png" alt="Росконгресс">
+                        <img src="./assets/partners/логотип технологии права.png" alt="Технологии Права">
                     </div>
                 </div>
             </div>
@@ -5116,7 +5154,7 @@
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
                             Стать партнёром
                         </button>
-                        <a href="mailto:partner@lideryprava.ru" class="partners-cta-btn partners-cta-btn-secondary">
+                        <a href="mailto:lideryprava@mail.ru" class="partners-cta-btn partners-cta-btn-secondary">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
                             Написать нам
                         </a>
@@ -5445,8 +5483,8 @@
                         <div class="footer-card animate-on-scroll stagger-3">
                             <span class="footer-card-title">Контакты</span>
                             <div class="footer-contact-list">
-                                <a href="tel:+74951234567">+7 (495) 123-45-67</a>
-                                <a href="mailto:info@lideriprava.ru">info@lideriprava.ru</a>
+                                <a href="tel:+79614929890">+7 (961) 492-98-90</a>
+                                <a href="mailto:lideryprava@mail.ru">lideryprava@mail.ru</a>
                                 <a href="javascript:void(0)" onclick="scrollToSection('partners')">Стать партнёром конкурса</a>
                             </div>
                         </div>
@@ -5653,9 +5691,9 @@
         <div class="alliance-modal">
             <h3>Стать партнёром</h3>
             <p>Позвоните нам, чтобы обсудить формат партнёрства и условия сотрудничества.</p>
-            <a href="tel:+74951234567" class="alliance-phone">
+            <a href="tel:+79614929890" class="alliance-phone">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                +7 (495) 123-45-67
+                +7 (961) 492-98-90
             </a>
             <button type="button" class="alliance-close" id="partnerPhoneClose" aria-label="Закрыть окно с телефоном">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>

@@ -1,22 +1,22 @@
 #!/usr/bin/expect -f
-set password "cD4aGX-Db_^*L+"
+set password "dt@1eAb+u4zjP7"
 set timeout 120
 
-spawn ssh root@83.217.201.60
-expect "password:"
+spawn ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no root@72.56.9.90
+expect -re "(?i)password:"
 send "$password\r"
-expect "#"
+expect -re {[$#] $}
 
 send "ls -la /var/www/html/\r"
-expect "#"
+expect -re {[$#] $}
 
 send "cat /etc/nginx/sites-enabled/* 2>/dev/null || echo 'no sites'\r"
-expect "#"
+expect -re {[$#] $}
 
 send "which python3\r"
-expect "#"
+expect -re {[$#] $}
 
 send "which certbot || echo 'certbot not found'\r"
-expect "#"
+expect -re {[$#] $}
 
 interact

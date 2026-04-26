@@ -1,8 +1,8 @@
 #!/usr/bin/expect -f
-set password "cD4aGX-Db_^*L+"
+set password "dt@1eAb+u4zjP7"
 set timeout 90
 
-spawn ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no root@83.217.201.60
+spawn ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no root@72.56.9.90
 expect -re "(?i)password:"
 send "$password\r"
 expect -re {[$#] ?$}

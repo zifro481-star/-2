@@ -1,25 +1,25 @@
 #!/usr/bin/expect -f
-set password "cD4aGX-Db_^*L+"
-set timeout 60
+set password "dt@1eAb+u4zjP7"
+set timeout 90
 
-spawn ssh root@83.217.201.60
-expect "password:"
+spawn ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no root@72.56.9.90
+expect -re "(?i)password:"
 send "$password\r"
-expect "#"
+expect -re {[$#] $}
 
 send "ls -la /var/www/lideryprava/\r"
-expect "#"
+expect -re {[$#] $}
 
 send "ls -la /var/www/lideryprava/data/\r"
-expect "#"
+expect -re {[$#] $}
 
 send "systemctl status lideryprava\r"
-expect "#"
+expect -re {[$#] $}
 
 send "curl -s http://127.0.0.1:8000/ | head -20\r"
-expect "#"
+expect -re {[$#] $}
 
 send "ls -la /etc/nginx/sites-enabled/\r"
-expect "#"
+expect -re {[$#] $}
 
 interact

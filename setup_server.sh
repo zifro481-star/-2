@@ -1,8 +1,8 @@
 #!/usr/bin/expect -f
-set password "cD4aGX-Db_^*L+"
+set password "dt@1eAb+u4zjP7"
 set timeout 120
 
-spawn ssh root@83.217.201.60
+spawn ssh root@72.56.9.90
 expect "password:"
 send "$password\r"
 expect "#"
@@ -31,7 +31,8 @@ expect "#"
 send "systemctl start lideryprava\r"
 expect "#"
 
-send "systemctl status lideryprava\r"
+send "systemctl status lideryprava --no-pager\r"
 expect "#"
 
-interact
+send "exit\r"
+expect eof
